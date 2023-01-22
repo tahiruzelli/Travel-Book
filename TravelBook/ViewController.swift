@@ -15,6 +15,9 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var saveButton: UIButton!
+    
+    var currentPlace : PlaceModel?
     
     var locationManager = CLLocationManager()
     var choosenLat = Double()
@@ -24,13 +27,35 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         super.viewDidLoad()
         mapView.delegate = self
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
         
-        let gesture = UILongPressGestureRecognizer(target: self, action: #selector(chooseLocation(gesture:)))
-        gesture.minimumPressDuration = 2
-        mapView.addGestureRecognizer(gesture)
+        if currentPlace != nil {
+            descriptionTextField.text = currentPlace?.description  ?? ""
+            descriptionTextField.isEnabled = false
+            titleTextField.text = currentPlace?.title ?? ""
+            titleTextField.isEnabled = false
+            
+            let annotation = MKPointAnnotation()
+            annotation.title = currentPlace?.title ?? ""
+            annotation.subtitle = currentPlace?.description ?? ""
+            let coordinate = CLLocationCoordinate2D(latitude: currentPlace?.latitude ?? 0, longitude: currentPlace?.longitude ?? 0)
+            annotation.coordinate = coordinate
+            mapView.addAnnotation(annotation)
+            let location = CLLocationCoordinate2D(latitude: currentPlace?.latitude ?? 0, longitude: currentPlace?.longitude ?? 0)
+            let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+            let region = MKCoordinateRegion(center: location, span: span)
+            mapView.setRegion(region, animated: true)
+            saveButton.isHidden = true
+            
+        }else{
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+            
+            let gesture = UILongPressGestureRecognizer(target: self, action: #selector(chooseLocation(gesture:)))
+            gesture.minimumPressDuration = 2
+            mapView.addGestureRecognizer(gesture)
+            saveButton.isHidden = false
+        }
     }
     
     @objc func chooseLocation(gesture: UILongPressGestureRecognizer){
@@ -45,6 +70,25 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
             annotation.subtitle = descriptionTextField.text
             self.mapView.addAnnotation(annotation)
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        let reuseId = "myAnnotation"
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKMarkerAnnotationView
+        if pinView == nil {
+            pinView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView?.canShowCallout = true
+            pinView?.tintColor  = .systemGreen
+            let button = UIButton(type: UIButton.ButtonType.detailDisclosure)
+            pinView?.rightCalloutAccessoryView = button
+        }else{
+            pinView?.annotation = annotation
+        }
+        return pinView
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -72,6 +116,9 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
         }catch{
             print("error")
         }
+        
+        NotificationCenter.default.post(name: NSNotification.Name("newPlace"), object: nil)
+        navigationController?.popViewController(animated: true)
     }
 }
 

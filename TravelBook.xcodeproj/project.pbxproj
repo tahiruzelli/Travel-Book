@@ -17,6 +17,7 @@
 		1E9C9D85297D598800554285 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C9D84297D598800554285 /* HomeViewController.swift */; };
 		1E9C9D88297D5A8300554285 /* PlaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C9D87297D5A8300554285 /* PlaceCollectionViewCell.swift */; };
 		1E9C9D8B297D624600554285 /* GlobalHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C9D8A297D624600554285 /* GlobalHelper.swift */; };
+		1E9C9D8E297DB68D00554285 /* PlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9C9D8D297DB68D00554285 /* PlaceModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		1E9C9D84297D598800554285 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1E9C9D87297D5A8300554285 /* PlaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCollectionViewCell.swift; sourceTree = "<group>"; };
 		1E9C9D8A297D624600554285 /* GlobalHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHelper.swift; sourceTree = "<group>"; };
+		1E9C9D8D297DB68D00554285 /* PlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 		1E46A4DB297B2A18009CD6E4 /* TravelBook */ = {
 			isa = PBXGroup;
 			children = (
+				1E9C9D8C297DB68500554285 /* Models */,
 				1E9C9D89297D623900554285 /* Helpers */,
 				1E9C9D86297D5A6100554285 /* Cell */,
 				1E46A4DC297B2A18009CD6E4 /* AppDelegate.swift */,
@@ -93,6 +96,14 @@
 				1E9C9D8A297D624600554285 /* GlobalHelper.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		1E9C9D8C297DB68500554285 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1E9C9D8D297DB68D00554285 /* PlaceModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E9C9D85297D598800554285 /* HomeViewController.swift in Sources */,
+				1E9C9D8E297DB68D00554285 /* PlaceModel.swift in Sources */,
 				1E46A4E7297B2A18009CD6E4 /* TravelBook.xcdatamodeld in Sources */,
 				1E9C9D88297D5A8300554285 /* PlaceCollectionViewCell.swift in Sources */,
 				1E46A4E1297B2A18009CD6E4 /* ViewController.swift in Sources */,

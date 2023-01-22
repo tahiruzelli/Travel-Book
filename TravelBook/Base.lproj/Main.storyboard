@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TravelBook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailVC" id="BYZ-38-t0r" customClass="ViewController" customModule="TravelBook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -60,6 +60,7 @@
                     <connections>
                         <outlet property="descriptionTextField" destination="Uiu-1m-KiI" id="ecz-mg-30j"/>
                         <outlet property="mapView" destination="xyp-bM-4cO" id="cKj-1v-Lag"/>
+                        <outlet property="saveButton" destination="Rd5-14-F3X" id="Zu0-TA-Pvw"/>
                         <outlet property="titleTextField" destination="J3l-aY-OCk" id="P0Z-jD-7Uo"/>
                     </connections>
                 </viewController>
@@ -98,7 +99,7 @@
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="IKF-By-shd">
                                                             <rect key="frame" x="0.0" y="0.0" width="196" height="100"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="190" id="Aoi-2f-GsV"/>
+                                                                <constraint firstAttribute="width" constant="200" id="Aoi-2f-GsV"/>
                                                                 <constraint firstAttribute="height" constant="100" id="mhK-v9-pSn"/>
                                                             </constraints>
                                                         </imageView>
@@ -111,11 +112,8 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It was the best city i have ever seen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7tX-wy-ksi">
-                                                            <rect key="frame" x="5" y="145" width="186" height="40"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="40" id="jRc-Oe-1rU"/>
-                                                            </constraints>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It was the best city i have ever seen" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7tX-wy-ksi">
+                                                            <rect key="frame" x="5" y="145" width="186" height="29"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" systemColor="systemGrayColor"/>
                                                             <nil key="highlightedColor"/>
@@ -172,6 +170,9 @@
                                         <integer key="value" value="100"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="newPlaceButtonAction:" destination="nBv-4M-aw9" eventType="touchUpInside" id="fLl-NP-DOC"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hxx-0J-WdC"/>

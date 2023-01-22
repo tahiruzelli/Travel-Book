@@ -99,6 +99,11 @@ class GlobalHelper {
         vc.navigationController?.pushViewController(controller, animated: true)
     }
     
+//    static func showVC(storyBoardName: String, VC : UIViewController, identifier: String){
+//        let vc = UIStoryboard.init(name: storyBoardName, bundle: Bundle.main).instantiateViewController(withIdentifier: identifier) as? VC
+//        vc.navigationController?.showDetailViewController(vc!, sender: nil)
+//    }
+    
     static func pushController<VC: UIViewController>(id: String,_ vC: UIViewController, storyBoardName: String, setup: (_ vc: VC) -> ()) {
       if let vc = UIStoryboard(name: storyBoardName, bundle: nil).instantiateViewController(withIdentifier: id) as? VC {
         setup(vc)
