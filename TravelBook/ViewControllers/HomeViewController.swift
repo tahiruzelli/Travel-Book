@@ -23,7 +23,7 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name("newPlace"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name(AppKeys().newPlaceNotification), object: nil)
     }
     
     @objc func getData(){
@@ -31,24 +31,26 @@ class HomeViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Places")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: AppKeys().placesEntityKey)
         request.returnsObjectsAsFaults = false
         do{
             let results = try context.fetch(request)
             if !results.isEmpty {
                 for result in results as! [NSManagedObject] {
                     
-                    let id = result.value(forKey: "id") as? UUID
-                    let title = result.value(forKey: "title") as? String
-                    let description = result.value(forKey: "subtitle") as? String
-                    let latitude = result.value(forKey: "latitude") as? Double
-                    let longitude = result.value(forKey: "longitude") as? Double
-                    let visitStatus = result.value(forKey: "visitStatus") as? Int
-                    let image = result.value(forKey: "image") as? String
+                    let id = result.value(forKey: AppKeys().placeIdKey) as? UUID
+                    let title = result.value(forKey: AppKeys().placeTitleKey) as? String
+                    let description = result.value(forKey: AppKeys().placeDescriptionKey) as? String
+                    let latitude = result.value(forKey: AppKeys().placeLatitudeKey) as? Double
+                    let longitude = result.value(forKey: AppKeys().placeLongitudeKey) as? Double
+                    let visitStatus = result.value(forKey: AppKeys().placeVisitStatusKey) as? Int
+                    let image = result.value(forKey: AppKeys().placeImageKey) as? String
                     
                     let place : PlaceModel = PlaceModel(id:id ?? UUID() , title: title ?? "", description: description ?? "", latitude: latitude ?? 0, longitude: longitude ?? 0, image: image ?? "", visitStatus: visitStatus ?? 0)
                     places.append(place)
                 }
+                places.reverse();
+                collectionView.reloadData()
             }
         }catch{
             
@@ -57,7 +59,7 @@ class HomeViewController: UIViewController {
     
     @IBAction func newPlaceButtonAction(_ sender: Any) {
         choosenPlace = nil
-        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailVC") as? ViewController
+        let vc = UIStoryboard.init(name: AppKeys().mainVCKey, bundle: Bundle.main).instantiateViewController(withIdentifier: AppKeys().detailVCKey) as? MapViewController
         self.navigationController?.pushViewController(vc!, animated: true)
     }
 }
@@ -77,7 +79,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         choosenPlace = places[indexPath.row]
-        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "DetailVC") as? ViewController
+        let vc = UIStoryboard.init(name: AppKeys().mainVCKey, bundle: Bundle.main).instantiateViewController(withIdentifier: AppKeys().detailVCKey) as? MapViewController
         vc?.currentPlace = choosenPlace
         self.navigationController?.pushViewController(vc!, animated: true)
     }

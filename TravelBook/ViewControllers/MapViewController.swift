@@ -10,7 +10,7 @@ import MapKit
 import CoreLocation
 import CoreData
 
-class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate {
 
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
@@ -99,26 +99,41 @@ class ViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDeleg
     }
 
     @IBAction func onSaveButtonPressed(_ sender: Any) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
-        let newPlace = NSEntityDescription.insertNewObject(forEntityName: "Places", into: context)
-        
-        newPlace.setValue(titleTextField.text, forKey: "title")
-        newPlace.setValue(descriptionTextField.text, forKey: "subtitle")
-        newPlace.setValue(UUID(), forKey: "id")
-        newPlace.setValue(choosenLat, forKey: "latitude")
-        newPlace.setValue(choosenLong, forKey: "longitude")
-        
-        do{
-            try context.save()
-            print("success")
-        }catch{
-            print("error")
+        var alertTitle : String = ""
+        if titleTextField.text!.isEmpty {
+            alertTitle = "Title can not be empty"
+        }
+        if descriptionTextField.text!.isEmpty{
+            alertTitle = "Description can not be empty"
+        }
+        if choosenLat == 0 || choosenLong == 0 {
+            alertTitle = "You have to choose a location"
         }
         
-        NotificationCenter.default.post(name: NSNotification.Name("newPlace"), object: nil)
-        navigationController?.popViewController(animated: true)
+        if !alertTitle.isEmpty{
+            let alert = UIAlertController(title: "Warning", message: alertTitle, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }else{
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            
+            let newPlace = NSEntityDescription.insertNewObject(forEntityName: AppKeys().placesEntityKey, into: context)
+            
+            newPlace.setValue(titleTextField.text, forKey: AppKeys().placeTitleKey)
+            newPlace.setValue(descriptionTextField.text, forKey: AppKeys().placeDescriptionKey)
+            newPlace.setValue(UUID(), forKey: AppKeys().placeIdKey)
+            newPlace.setValue(choosenLat, forKey: AppKeys().placeLatitudeKey)
+            newPlace.setValue(choosenLong, forKey: AppKeys().placeLongitudeKey)
+            
+            do{
+                try context.save()
+            }catch{
+            }
+            
+            NotificationCenter.default.post(name: NSNotification.Name(AppKeys().newPlaceNotification), object: nil)
+            navigationController?.popViewController(animated: true)
+        }
     }
 }
 

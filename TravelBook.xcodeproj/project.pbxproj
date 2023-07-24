@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E274D822A6F12D40006F694 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E274D812A6F12D40006F694 /* Keys.swift */; };
 		1E46A4DD297B2A18009CD6E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E46A4DC297B2A18009CD6E4 /* AppDelegate.swift */; };
 		1E46A4DF297B2A18009CD6E4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E46A4DE297B2A18009CD6E4 /* SceneDelegate.swift */; };
-		1E46A4E1297B2A18009CD6E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E46A4E0297B2A18009CD6E4 /* ViewController.swift */; };
+		1E46A4E1297B2A18009CD6E4 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E46A4E0297B2A18009CD6E4 /* MapViewController.swift */; };
 		1E46A4E4297B2A18009CD6E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E46A4E2297B2A18009CD6E4 /* Main.storyboard */; };
 		1E46A4E7297B2A18009CD6E4 /* TravelBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1E46A4E5297B2A18009CD6E4 /* TravelBook.xcdatamodeld */; };
 		1E46A4E9297B2A18009CD6E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E46A4E8297B2A18009CD6E4 /* Assets.xcassets */; };
@@ -21,10 +22,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E274D812A6F12D40006F694 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		1E46A4D9297B2A18009CD6E4 /* TravelBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E46A4DC297B2A18009CD6E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1E46A4DE297B2A18009CD6E4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1E46A4E0297B2A18009CD6E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1E46A4E0297B2A18009CD6E4 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1E46A4E3297B2A18009CD6E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1E46A4E6297B2A18009CD6E4 /* TravelBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TravelBook.xcdatamodel; sourceTree = "<group>"; };
 		1E46A4E8297B2A18009CD6E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -47,6 +49,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E274D7F2A6F12AD0006F694 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1E9C9D84297D598800554285 /* HomeViewController.swift */,
+				1E46A4E0297B2A18009CD6E4 /* MapViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		1E274D802A6F12C20006F694 /* Consts */ = {
+			isa = PBXGroup;
+			children = (
+				1E274D812A6F12D40006F694 /* Keys.swift */,
+			);
+			path = Consts;
+			sourceTree = "<group>";
+		};
 		1E46A4D0297B2A17009CD6E4 = {
 			isa = PBXGroup;
 			children = (
@@ -66,18 +85,18 @@
 		1E46A4DB297B2A18009CD6E4 /* TravelBook */ = {
 			isa = PBXGroup;
 			children = (
+				1E274D802A6F12C20006F694 /* Consts */,
+				1E274D7F2A6F12AD0006F694 /* ViewControllers */,
 				1E9C9D8C297DB68500554285 /* Models */,
 				1E9C9D89297D623900554285 /* Helpers */,
 				1E9C9D86297D5A6100554285 /* Cell */,
 				1E46A4DC297B2A18009CD6E4 /* AppDelegate.swift */,
 				1E46A4DE297B2A18009CD6E4 /* SceneDelegate.swift */,
-				1E46A4E0297B2A18009CD6E4 /* ViewController.swift */,
 				1E46A4E2297B2A18009CD6E4 /* Main.storyboard */,
 				1E46A4E8297B2A18009CD6E4 /* Assets.xcassets */,
 				1E46A4EA297B2A18009CD6E4 /* LaunchScreen.storyboard */,
 				1E46A4ED297B2A18009CD6E4 /* Info.plist */,
 				1E46A4E5297B2A18009CD6E4 /* TravelBook.xcdatamodeld */,
-				1E9C9D84297D598800554285 /* HomeViewController.swift */,
 			);
 			path = TravelBook;
 			sourceTree = "<group>";
@@ -181,9 +200,10 @@
 				1E9C9D8E297DB68D00554285 /* PlaceModel.swift in Sources */,
 				1E46A4E7297B2A18009CD6E4 /* TravelBook.xcdatamodeld in Sources */,
 				1E9C9D88297D5A8300554285 /* PlaceCollectionViewCell.swift in Sources */,
-				1E46A4E1297B2A18009CD6E4 /* ViewController.swift in Sources */,
+				1E46A4E1297B2A18009CD6E4 /* MapViewController.swift in Sources */,
 				1E46A4DD297B2A18009CD6E4 /* AppDelegate.swift in Sources */,
 				1E46A4DF297B2A18009CD6E4 /* SceneDelegate.swift in Sources */,
+				1E274D822A6F12D40006F694 /* Keys.swift in Sources */,
 				1E9C9D8B297D624600554285 /* GlobalHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
