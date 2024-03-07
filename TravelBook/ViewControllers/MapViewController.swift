@@ -10,7 +10,7 @@ import MapKit
 import CoreLocation
 import CoreData
 
-class MapViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
@@ -96,6 +96,19 @@ class MapViewController: UIViewController, MKMapViewDelegate,CLLocationManagerDe
         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         let region = MKCoordinateRegion(center: location, span: span)
         mapView.setRegion(region, animated: true)
+    }
+    
+    @objc func selectImage(){
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        picker.allowsEditing = true
+        present(picker,animated: true,completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage]
+        self.dismiss(animated: true,completion: nil)
     }
 
     @IBAction func onSaveButtonPressed(_ sender: Any) {

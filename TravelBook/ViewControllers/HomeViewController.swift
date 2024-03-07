@@ -19,6 +19,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        let timer = Timer(timeInterval: 0.4, repeats: true) { _ in print("Done!") }
         getData()
     }
     
